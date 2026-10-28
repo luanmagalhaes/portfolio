@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { localePaths, localeTags, type Locale } from "@/domain/locale";
+import { localeTags, type Locale } from "@/domain/locale";
+import { otherLocale, pagePath } from "@/lib/routes";
 import type { Portfolio } from "@/domain/view";
 import type { Dictionary } from "@/i18n/dictionary";
 
@@ -20,11 +21,14 @@ function anchorLabel(anchor: (typeof anchors)[number], dictionary: Dictionary): 
 }
 
 export function TopBar({ dictionary, locale }: { dictionary: Dictionary; locale: Locale }) {
-  const other: Locale = locale === "en" ? "pt" : "en";
+  const other = otherLocale(locale);
 
   return (
     <div className="sticky top-0 z-40 border-b-4 border-ink bg-night/95 backdrop-blur">
       <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-5 py-2.5 sm:px-8">
+        <Link className="pixel-button shrink-0" href={pagePath("home", locale)}>
+          {dictionary.backToVersions}
+        </Link>
         <nav aria-label={dictionary.sections} className="min-w-0 flex-1 overflow-x-auto">
           <ul className="flex gap-1 whitespace-nowrap">
             {anchors.map((anchor) => (
@@ -36,7 +40,7 @@ export function TopBar({ dictionary, locale }: { dictionary: Dictionary; locale:
             ))}
           </ul>
         </nav>
-        <Link className="pixel-button shrink-0" href={localePaths[other]} hrefLang={localeTags[other]} aria-label={dictionary.otherLanguageLabel}>
+        <Link className="pixel-button shrink-0" href={pagePath("quick", other)} hrefLang={localeTags[other]} aria-label={dictionary.otherLanguageLabel}>
           {dictionary.otherLanguage}
         </Link>
       </div>

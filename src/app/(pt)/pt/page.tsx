@@ -1,5 +1,5 @@
-import { PortfolioPage } from "@/components/PortfolioPage";
+import { LandingPage } from "@/components/landing/LandingPage";
 
-export default function PortuguesePage() {
-  return <PortfolioPage locale="pt" />;
+export default function PortugueseHomePage() {
+  return <LandingPage locale="pt" />;
 }

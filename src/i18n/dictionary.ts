@@ -2,6 +2,12 @@ import type { Locale } from "@/domain/locale";
 
 export interface Dictionary {
   skipToContent: string;
+  backToVersions: string;
+  chooseVersion: string;
+  versionsIntro: string;
+  play: string;
+  quickViewLink: string;
+  languageLabel: string;
   player: string;
   sections: string;
   quickView: string;
@@ -44,6 +50,12 @@ export interface Dictionary {
 
 const en: Dictionary = {
   skipToContent: "Skip to content",
+  backToVersions: "Versions",
+  chooseVersion: "Choose your version",
+  versionsIntro: "The same portfolio as three different games. Pick one, or open the quick view if you are in a hurry.",
+  play: "Play",
+  quickViewLink: "Quick view, no game",
+  languageLabel: "Language",
   player: "Player 1",
   sections: "Sections",
   quickView: "Quick view",
@@ -79,13 +91,19 @@ const en: Dictionary = {
   builtIn: (days) => (days === 1 ? "Built in 1 day" : `Built in ${days} days`),
   screenshotOf: (name) => `Screenshot of ${name}`,
   demoOf: (name) => `Short demo of ${name}`,
-  playLiveLabel: (name) => `Play ${name} live, opens in a new tab`,
-  sourceCodeLabel: (name) => `Source code of ${name} on GitHub`,
+  playLiveLabel: (name) => `Play live: ${name} (opens in a new tab)`,
+  sourceCodeLabel: (name) => `Source code: ${name} on GitHub`,
   footer: "Built with Next.js 16, React 19 and original pixel art.",
 };
 
 const pt: Dictionary = {
   skipToContent: "Pular para o conteúdo",
+  backToVersions: "Versões",
+  chooseVersion: "Escolha a sua versão",
+  versionsIntro: "O mesmo portfólio em três jogos diferentes. Escolha um, ou abra a visão rápida se estiver com pressa.",
+  play: "Jogar",
+  quickViewLink: "Visão rápida, sem jogo",
+  languageLabel: "Idioma",
   player: "Jogador 1",
   sections: "Seções",
   quickView: "Visão rápida",
@@ -121,8 +139,8 @@ const pt: Dictionary = {
   builtIn: (days) => (days === 1 ? "Feito em 1 dia" : `Feito em ${days} dias`),
   screenshotOf: (name) => `Print do ${name}`,
   demoOf: (name) => `Demonstração curta do ${name}`,
-  playLiveLabel: (name) => `Jogar o ${name} ao vivo, abre em outra aba`,
-  sourceCodeLabel: (name) => `Código do ${name} no GitHub`,
+  playLiveLabel: (name) => `Jogar ao vivo: ${name} (abre em outra aba)`,
+  sourceCodeLabel: (name) => `Código: ${name} no GitHub`,
   footer: "Feito com Next.js 16, React 19 e pixel art original.",
 };
 

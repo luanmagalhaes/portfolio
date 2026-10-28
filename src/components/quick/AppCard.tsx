@@ -31,7 +31,7 @@ export function AppCard({ app, dictionary }: { app: App; dictionary: Dictionary 
               {dictionary.sourceCode}
             </a>
           ) : (
-            <span className="self-center text-xs text-grey">{dictionary.privateCode}</span>
+            <span className="self-center text-xs text-silver">{dictionary.privateCode}</span>
           )}
         </div>
       </div>

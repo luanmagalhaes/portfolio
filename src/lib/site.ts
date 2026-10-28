@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { localePaths, localeTags, type Locale } from "@/domain/locale";
+import { localeTags, type Locale } from "@/domain/locale";
+import { pagePath, type PageId } from "@/lib/routes";
 
 export const siteUrl = "https://luanmagalhaes.vercel.app";
 
@@ -8,28 +9,38 @@ const descriptions: Record<Locale, string> = {
   pt: "Engenheiro de software sênior, full stack e IA, com foco forte em front-end. Explore o portfólio como um jogo 16-bit ou na visão rápida.",
 };
 
+const shareImage = {
+  url: "/og.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Luan Magalhães, senior software engineer: choose a version of the portfolio, Arcade, Overworld, Journey or the quick view.",
+};
+
 const titles: Record<Locale, string> = {
   en: "Luan Magalhães · Senior Software Engineer",
   pt: "Luan Magalhães · Engenheiro de software sênior",
 };
 
-export function metadataFor(locale: Locale): Metadata {
+export function metadataFor(locale: Locale, page: PageId = "home", title?: string): Metadata {
+  const fullTitle = title ? `${title} · ${titles[locale]}` : titles[locale];
+
   return {
     metadataBase: new URL(siteUrl),
-    title: titles[locale],
+    title: fullTitle,
     description: descriptions[locale],
     alternates: {
-      canonical: localePaths[locale],
-      languages: { [localeTags.en]: localePaths.en, [localeTags.pt]: localePaths.pt, "x-default": localePaths.en },
+      canonical: pagePath(page, locale),
+      languages: { [localeTags.en]: pagePath(page, "en"), [localeTags.pt]: pagePath(page, "pt"), "x-default": pagePath(page, "en") },
     },
     openGraph: {
       type: "profile",
-      url: localePaths[locale],
-      title: titles[locale],
+      url: pagePath(page, locale),
+      title: fullTitle,
       description: descriptions[locale],
       locale: localeTags[locale].replace("-", "_"),
       siteName: "Luan Magalhães",
+      images: [shareImage],
     },
-    twitter: { card: "summary_large_image", title: titles[locale], description: descriptions[locale] },
+    twitter: { card: "summary_large_image", title: fullTitle, description: descriptions[locale], images: [shareImage] },
   };
 }

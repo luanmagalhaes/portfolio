@@ -12,7 +12,7 @@ export function BossesSection({ portfolio, dictionary }: { portfolio: Portfolio;
             <p className="mt-1 text-sm text-lavender">{item.client}</p>
             <dl className="mt-4 space-y-3 text-sm">
               <div>
-                <dt className="font-pixel text-red">{dictionary.problem}</dt>
+                <dt className="font-pixel text-pink">{dictionary.problem}</dt>
                 <dd className="mt-1 text-silver">{item.problem}</dd>
               </div>
               <div>
