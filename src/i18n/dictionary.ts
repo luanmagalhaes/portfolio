@@ -2,6 +2,8 @@ import type { Locale } from "@/domain/locale";
 
 export interface Dictionary {
   skipToContent: string;
+  player: string;
+  sections: string;
   quickView: string;
   quickViewHint: string;
   otherLanguage: string;
@@ -31,13 +33,19 @@ export interface Dictionary {
   problem: string;
   moves: string;
   result: string;
+  appStack: string;
   builtIn: (days: number) => string;
   screenshotOf: (name: string) => string;
+  demoOf: (name: string) => string;
+  playLiveLabel: (name: string) => string;
+  sourceCodeLabel: (name: string) => string;
   footer: string;
 }
 
 const en: Dictionary = {
   skipToContent: "Skip to content",
+  player: "Player 1",
+  sections: "Sections",
   quickView: "Quick view",
   quickViewHint: "Everything on one page, no game needed.",
   otherLanguage: "Português",
@@ -67,13 +75,19 @@ const en: Dictionary = {
   problem: "Problem",
   moves: "Moves",
   result: "Result",
+  appStack: "Every app:",
   builtIn: (days) => (days === 1 ? "Built in 1 day" : `Built in ${days} days`),
   screenshotOf: (name) => `Screenshot of ${name}`,
+  demoOf: (name) => `Short demo of ${name}`,
+  playLiveLabel: (name) => `Play ${name} live, opens in a new tab`,
+  sourceCodeLabel: (name) => `Source code of ${name} on GitHub`,
   footer: "Built with Next.js 16, React 19 and original pixel art.",
 };
 
 const pt: Dictionary = {
   skipToContent: "Pular para o conteúdo",
+  player: "Jogador 1",
+  sections: "Seções",
   quickView: "Visão rápida",
   quickViewHint: "Tudo numa página só, sem precisar jogar.",
   otherLanguage: "English",
@@ -103,8 +117,12 @@ const pt: Dictionary = {
   problem: "Problema",
   moves: "Jogadas",
   result: "Resultado",
+  appStack: "Todos os apps:",
   builtIn: (days) => (days === 1 ? "Feito em 1 dia" : `Feito em ${days} dias`),
   screenshotOf: (name) => `Print do ${name}`,
+  demoOf: (name) => `Demonstração curta do ${name}`,
+  playLiveLabel: (name) => `Jogar o ${name} ao vivo, abre em outra aba`,
+  sourceCodeLabel: (name) => `Código do ${name} no GitHub`,
   footer: "Feito com Next.js 16, React 19 e pixel art original.",
 };
 

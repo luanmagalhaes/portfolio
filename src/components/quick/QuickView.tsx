@@ -5,7 +5,7 @@ import { AppsSection } from "@/components/quick/AppsSection";
 import { BossesSection } from "@/components/quick/BossesSection";
 import { CareerSection } from "@/components/quick/CareerSection";
 import { AiSection, EducationSection, PrivateSection, SkillsSection } from "@/components/quick/ExtrasSection";
-import { QuickHeader } from "@/components/quick/QuickHeader";
+import { QuickHeader, TopBar } from "@/components/quick/QuickHeader";
 import { Section } from "@/components/quick/Section";
 
 export function QuickView({ portfolio, dictionary, locale }: { portfolio: Portfolio; dictionary: Dictionary; locale: Locale }) {
@@ -14,7 +14,8 @@ export function QuickView({ portfolio, dictionary, locale }: { portfolio: Portfo
       <a href="#content" className="skip-link">
         {dictionary.skipToContent}
       </a>
-      <QuickHeader portfolio={portfolio} dictionary={dictionary} locale={locale} />
+      <TopBar dictionary={dictionary} locale={locale} />
+      <QuickHeader portfolio={portfolio} dictionary={dictionary} />
       <main id="content">
         <Section id="about" title={dictionary.about}>
           <p className="max-w-3xl text-lg leading-relaxed text-cream/90">{portfolio.profile.summary}</p>

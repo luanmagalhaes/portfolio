@@ -1,5 +1,11 @@
 import type { Localized } from "@/domain/locale";
 
+export interface StatContent {
+  id: string;
+  label: Localized;
+  value: Localized;
+}
+
 export interface ProfileContent {
   name: string;
   title: Localized;
@@ -9,6 +15,7 @@ export interface ProfileContent {
   github: string;
   summary: Localized;
   resume: Localized;
+  stats: StatContent[];
 }
 
 export interface JobContent {

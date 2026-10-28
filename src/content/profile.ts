@@ -21,4 +21,11 @@ export const profile: ProfileContent = {
     en: "/resume/luan-magalhaes-resume.pdf",
     pt: "/resume/luan-magalhaes-curriculo.pdf",
   },
+  stats: [
+    { id: "class", label: { en: "Class", pt: "Classe" }, value: { en: "Full stack and AI, front-end focus", pt: "Full stack e IA, foco em front-end" } },
+    { id: "since", label: { en: "Coding professionally since", pt: "Programando profissionalmente desde" }, value: { en: "2021", pt: "2021" } },
+    { id: "base", label: { en: "Base", pt: "Base" }, value: { en: "Brazil, remote (UTC-3)", pt: "Brasil, remoto (UTC-3)" } },
+    { id: "languages", label: { en: "Languages", pt: "Idiomas" }, value: { en: "Portuguese, English (C2), Italian", pt: "Português, inglês (C2), italiano" } },
+    { id: "degrees", label: { en: "Degrees", pt: "Formação" }, value: { en: "Internet Systems Development (2025), MSc (2022)", pt: "Sistemas para Internet (2025), mestrado (2022)" } },
+  ],
 };
