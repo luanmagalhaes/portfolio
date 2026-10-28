@@ -37,7 +37,9 @@ for (const route of routes) {
         [...document.querySelectorAll<HTMLElement>("a, button, h1, h2, h3, label, [role=button]")]
           .filter((element) => {
             const style = getComputedStyle(element);
-            const visible = element.offsetParent !== null && style.visibility !== "hidden" && element.getClientRects().length > 0;
+            const rect = element.getBoundingClientRect();
+            const screenReaderOnly = rect.width <= 2 || rect.height <= 2 || style.clipPath.includes("inset(50%") || style.clip.startsWith("rect(");
+            const visible = !screenReaderOnly && element.offsetParent !== null && style.visibility !== "hidden" && element.getClientRects().length > 0;
             const clips = style.overflow !== "visible" || style.textOverflow === "ellipsis" || style.whiteSpace === "nowrap";
 
             return visible && clips && element.innerText.trim() !== "" && element.scrollWidth > element.clientWidth + 2;

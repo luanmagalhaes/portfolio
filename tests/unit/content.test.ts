@@ -91,6 +91,10 @@ describe("conteúdo do portfólio", () => {
     }
   });
 
+  it("só abre dentro do portfólio o app que pode aparecer ali", () => {
+    expect(content.apps.filter((app) => !app.embedLive).map((app) => app.id)).toEqual(["abece"]);
+  });
+
   it("tem os currículos em PDF no public", () => {
     for (const locale of locales) {
       expect(existsSync(join(process.cwd(), "public", content.profile.resume[locale]))).toBe(true);

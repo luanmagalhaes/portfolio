@@ -27,12 +27,13 @@
   --color-brick: #cf4b2e;
   --color-red: #ec3a52;
   --color-pink: #ff7cbc;
-  --font-pixel: var(--font-pixelify), ui-monospace, monospace;
+  --font-pixel: var(--font-jersey), ui-monospace, monospace;
   --font-body: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   html {
+    font-variant-ligatures: none;
     scroll-behavior: smooth;
     scroll-padding-top: 4.5rem;
     background: var(--color-night);
@@ -43,6 +44,16 @@
 
   body {
     min-height: 100dvh;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
   }
 
   :focus-visible {

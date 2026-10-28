@@ -3,8 +3,8 @@ import type { ProfileContent } from "@/domain/portfolio";
 export const profile: ProfileContent = {
   name: "Luan Magalhães",
   title: {
-    en: "Senior Software Engineer · Full Stack and AI",
-    pt: "Engenheiro de software sênior · Full stack e IA",
+    en: "Senior Software Engineer\u00a0· Full Stack and AI",
+    pt: "Engenheiro de software sênior\u00a0· Full stack e IA",
   },
   location: {
     en: "Brazil, remote (UTC-3)",

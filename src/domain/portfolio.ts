@@ -69,6 +69,7 @@ export interface AppContent {
   emblem: string;
   poster: string;
   demo: AppDemo | null;
+  embedLive: boolean;
 }
 
 export interface PrivateAppContent {

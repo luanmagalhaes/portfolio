@@ -1,5 +1,5 @@
-import { Inter, Pixelify_Sans } from "next/font/google";
+import { Inter, Jersey_10 } from "next/font/google";
 
-export const pixelFont = Pixelify_Sans({ subsets: ["latin", "latin-ext"], variable: "--font-pixelify", display: "swap" });
+export const pixelFont = Jersey_10({ weight: "400", subsets: ["latin", "latin-ext"], variable: "--font-jersey", display: "swap" });
 
 export const bodyFont = Inter({ subsets: ["latin", "latin-ext"], variable: "--font-inter", display: "swap" });

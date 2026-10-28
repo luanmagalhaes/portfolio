@@ -153,6 +153,7 @@
 
 .landing-role {
   margin-top: 1.25rem;
+  text-wrap: balance;
   color: var(--color-lavender);
   font-size: clamp(1.0625rem, 2vw, 1.3125rem);
 }

@@ -24,6 +24,7 @@ export const apps: AppContent[] = [
     emblem: "app-vitrola",
     poster: "/apps/vitrola.png",
     demo: demoFor("vitrola"),
+    embedLive: true,
   },
   {
     id: "cantarola",
@@ -38,6 +39,7 @@ export const apps: AppContent[] = [
     emblem: "app-cantarola",
     poster: "/apps/cantarola.png",
     demo: demoFor("cantarola"),
+    embedLive: true,
   },
   {
     id: "nao-vale",
@@ -52,6 +54,7 @@ export const apps: AppContent[] = [
     emblem: "app-nao-vale",
     poster: "/apps/nao-vale.png",
     demo: demoFor("nao-vale"),
+    embedLive: true,
   },
   {
     id: "flow",
@@ -66,6 +69,7 @@ export const apps: AppContent[] = [
     emblem: "app-flow",
     poster: "/apps/flow.png",
     demo: demoFor("flow"),
+    embedLive: true,
   },
   {
     id: "de-fininho",
@@ -80,6 +84,7 @@ export const apps: AppContent[] = [
     emblem: "app-de-fininho",
     poster: "/apps/de-fininho.png",
     demo: demoFor("de-fininho"),
+    embedLive: true,
   },
   {
     id: "flip-score",
@@ -94,6 +99,7 @@ export const apps: AppContent[] = [
     emblem: "app-flip-score",
     poster: "/apps/flip-score.png",
     demo: demoFor("flip-score"),
+    embedLive: true,
   },
   {
     id: "la-cuentita",
@@ -108,6 +114,7 @@ export const apps: AppContent[] = [
     emblem: "app-la-cuentita",
     poster: "/apps/la-cuentita.png",
     demo: demoFor("la-cuentita"),
+    embedLive: true,
   },
   {
     id: "abece",
@@ -122,6 +129,7 @@ export const apps: AppContent[] = [
     emblem: "app-abece",
     poster: "/apps/abece.png",
     demo: null,
+    embedLive: false,
   },
 ];
 
