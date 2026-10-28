@@ -1,4 +1,12 @@
-import type { AiProjectContent, AppContent, PrivateAppContent } from "@/domain/portfolio";
+import type { AiProjectContent, AppContent, AppDemo, MediaSet, PrivateAppContent } from "@/domain/portfolio";
+
+function media(id: string, format: "portrait" | "landscape"): MediaSet {
+  return { mp4: `/demos/${id}-${format}.mp4`, webm: `/demos/${id}-${format}.webm`, poster: `/demos/${id}-${format}.jpg` };
+}
+
+function demoFor(id: string): AppDemo {
+  return { portrait: media(id, "portrait"), landscape: media(id, "landscape") };
+}
 
 export const appStack = ["Next.js 16", "React 19", "Tailwind 4", "Supabase", "Vitest", "Vercel"];
 
@@ -15,6 +23,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/vitrola",
     emblem: "app-vitrola",
     poster: "/apps/vitrola.png",
+    demo: demoFor("vitrola"),
   },
   {
     id: "cantarola",
@@ -28,6 +37,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/cantarola",
     emblem: "app-cantarola",
     poster: "/apps/cantarola.png",
+    demo: demoFor("cantarola"),
   },
   {
     id: "nao-vale",
@@ -41,6 +51,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/nao-vale",
     emblem: "app-nao-vale",
     poster: "/apps/nao-vale.png",
+    demo: demoFor("nao-vale"),
   },
   {
     id: "flow",
@@ -54,6 +65,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/flow",
     emblem: "app-flow",
     poster: "/apps/flow.png",
+    demo: demoFor("flow"),
   },
   {
     id: "de-fininho",
@@ -67,6 +79,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/de-fininho",
     emblem: "app-de-fininho",
     poster: "/apps/de-fininho.png",
+    demo: demoFor("de-fininho"),
   },
   {
     id: "flip-score",
@@ -80,6 +93,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/flip-score",
     emblem: "app-flip-score",
     poster: "/apps/flip-score.png",
+    demo: demoFor("flip-score"),
   },
   {
     id: "la-cuentita",
@@ -93,6 +107,7 @@ export const apps: AppContent[] = [
     codeUrl: "https://github.com/luanmagalhaes/la-cuentita",
     emblem: "app-la-cuentita",
     poster: "/apps/la-cuentita.png",
+    demo: demoFor("la-cuentita"),
   },
   {
     id: "abece",
@@ -106,6 +121,7 @@ export const apps: AppContent[] = [
     codeUrl: null,
     emblem: "app-abece",
     poster: "/apps/abece.png",
+    demo: null,
   },
 ];
 

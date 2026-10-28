@@ -81,6 +81,16 @@ describe("conteúdo do portfólio", () => {
     }
   });
 
+  it("tem as demos em vídeo e cartaz de todo app que tem demo", () => {
+    const files = content.apps.flatMap((app) => (app.demo ? [app.demo.portrait, app.demo.landscape].flatMap((set) => [set.mp4, set.webm, set.poster]) : []));
+
+    expect(files).toHaveLength(42);
+
+    for (const file of files) {
+      expect(existsSync(join(process.cwd(), "public", file))).toBe(true);
+    }
+  });
+
   it("tem os currículos em PDF no public", () => {
     for (const locale of locales) {
       expect(existsSync(join(process.cwd(), "public", content.profile.resume[locale]))).toBe(true);

@@ -41,6 +41,17 @@ export interface CaseContent {
   stack: string[];
 }
 
+export interface MediaSet {
+  mp4: string;
+  webm: string;
+  poster: string;
+}
+
+export interface AppDemo {
+  portrait: MediaSet;
+  landscape: MediaSet;
+}
+
 export interface AppContent {
   id: string;
   name: string;
@@ -50,6 +61,7 @@ export interface AppContent {
   codeUrl: string | null;
   emblem: string;
   poster: string;
+  demo: AppDemo | null;
 }
 
 export interface PrivateAppContent {
