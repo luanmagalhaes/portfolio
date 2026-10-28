@@ -10,10 +10,10 @@ const descriptions: Record<Locale, string> = {
 };
 
 const shareImage = {
-  url: "/og.jpg",
+  url: "/og.png",
   width: 1200,
   height: 630,
-  alt: "Luan Magalhães, senior software engineer: choose a version of the portfolio, Arcade, Overworld, Journey or the quick view.",
+  alt: "Pixel art of Luan Magalhães and his dog Matilda on a beach at sunset, with his name and the title Senior Software Engineer, Full Stack and AI.",
 };
 
 const titles: Record<Locale, string> = {
