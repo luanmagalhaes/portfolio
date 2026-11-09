@@ -8,7 +8,7 @@ import { pagePath } from "@/lib/routes";
 export function VersionCard({ version, index, locale, dictionary }: { version: Resolved<VersionContent>; index: number; locale: Locale; dictionary: Dictionary }) {
   return (
     <li>
-      <Link href={pagePath(version.id, locale)} className="version-card">
+      <Link href={pagePath(version.id, locale)} className="version-card" prefetch={false}>
         <span className="version-frame">
           <Image src={version.preview} alt="" width={960} height={600} sizes="(min-width: 1024px) 30vw, (min-width: 640px) 45vw, 92vw" className="version-image" priority={index === 0} />
         </span>

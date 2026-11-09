@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import type { Locale } from "@/domain/locale";
 import { pagePath } from "@/lib/routes";
-import { GameOverScreen } from "@/components/system/GameOverScreen";
+import { GameOverScreen, type GameOverMessage } from "@/components/system/GameOverScreen";
 
 const copy: Record<Locale, { lang: string; title: string; body: string; retry: string; home: string }> = {
   en: {
@@ -23,23 +23,26 @@ const copy: Record<Locale, { lang: string; title: string; body: string; retry: s
   },
 };
 
-export function ErrorScreen({ locale, error, retry }: { locale: Locale; error: Error & { digest?: string }; retry: () => void }) {
+function errorMessage(locale: Locale, retry: () => void): GameOverMessage {
   const text = copy[locale];
-
-  useEffect(() => {
-    console.error(error);
-  }, [error]);
-
   const actions = (
     <>
       <button type="button" className="pixel-button pixel-button-primary" onClick={() => retry()}>
         {text.retry}
       </button>
-      <Link className="pixel-button" href={pagePath("home", locale)}>
+      <Link className="pixel-button" href={pagePath("home", locale)} hrefLang={text.lang}>
         {text.home}
       </Link>
     </>
   );
 
-  return <GameOverScreen code="ERR" messages={[{ lang: text.lang, title: text.title, body: text.body, actions }]} />;
+  return { lang: text.lang, title: text.title, body: text.body, actions };
+}
+
+export function ErrorScreen({ locales, error, retry }: { locales: Locale[]; error: Error & { digest?: string }; retry: () => void }) {
+  useEffect(() => {
+    console.error(error);
+  }, [error]);
+
+  return <GameOverScreen code="ERR" messages={locales.map((locale) => errorMessage(locale, retry))} />;
 }

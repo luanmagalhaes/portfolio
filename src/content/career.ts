@@ -5,7 +5,7 @@ export const jobs: JobContent[] = [
     id: "antecipa-facil",
     company: "Antecipa Fácil",
     role: { en: "Full-stack software engineer", pt: "Engenheiro de software full-stack" },
-    period: { en: "Dec 2022 to present", pt: "dez 2022 a atual" },
+    period: { en: "Dec 2022 to present", pt: "dez 2022 até hoje" },
     place: { en: "Brazil, remote", pt: "Brasil, remoto" },
     about: {
       en: "Credit marketplace where companies sell their receivables through a reverse auction among funders.",
@@ -23,7 +23,7 @@ export const jobs: JobContent[] = [
       pt: [
         "Criei do zero o app do cliente, do qual sou o maior contribuidor, e os módulos centrais do backoffice.",
         "Construí a análise por LLM do chat entre empresas e financiadores (resumo, sentimento, respostas sugeridas e alertas de compliance), com fallback do Azure OpenAI para o Claude quando há recusa por filtro de conteúdo.",
-        "Levei o chat do monólito Django para um microserviço com autenticação entre serviços, Celery e roteamento pelo Azure APIM.",
+        "Levei o chat do monólito Django para um microsserviço com autenticação entre serviços, Celery e roteamento pelo Azure APIM.",
         "Fiz o novo onboarding de ponta a ponta a partir dos protótipos no Lovable: cerca de 40 telas, login com Google e Microsoft, OCR de documentos, endpoints no backend, testes e eventos PostHog, tudo atrás de feature flag.",
         "Na v2 da plataforma, redesenhei a arquitetura do front com Clean Architecture e DDD. A migração dobrou a receita da empresa.",
         "Levei Husky, ESLint, Storybook, Vitest e Playwright para os fronts e escrevi cerca de 130 arquivos de teste.",

@@ -4,6 +4,8 @@ import { uiIconPath } from "@/components/journey/model/assets";
 import { Sprite } from "@/components/journey/nodes/Sprite";
 
 export function ContactLinks({ profile, copy }: { profile: Portfolio["profile"]; copy: JourneyCopy }) {
+  const [mailbox, domain] = profile.email.split("@");
+
   return (
     <ul className="jr-goal-links">
       <li>
@@ -15,7 +17,10 @@ export function ContactLinks({ profile, copy }: { profile: Portfolio["profile"];
       <li>
         <a className="jr-btn jr-btn-text" href={`mailto:${profile.email}`} aria-label={`${copy.email}: ${profile.email}`}>
           <Sprite className="jr-ico" src={uiIconPath("mail")} width={16} height={16} />
-          {profile.email}
+          <span>
+            {mailbox}
+            <wbr />@{domain}
+          </span>
         </a>
       </li>
       <li>

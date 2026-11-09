@@ -11,6 +11,7 @@ export interface PlaceCopy {
 
 export interface OverworldCopy {
   stageLabel: string;
+  stageRole: string;
   skipToQuickView: string;
   noscript: string;
   quickView: string;
@@ -117,6 +118,7 @@ export interface OverworldCopy {
 }
 
 const en: OverworldCopy = {
+  stageRole: "game",
   stageLabel: "Porto Magalhães, a pixel town. Arrow keys or WASD to walk, Enter to talk. Use the place buttons to travel.",
   skipToQuickView: "Skip the game: open the quick view",
   noscript: "This town needs JavaScript. Everything is also on the quick view page.",
@@ -217,7 +219,7 @@ const en: OverworldCopy = {
   },
   houseTitle: (firstName) => `${firstName}'s house`,
   greetings: {
-    house: (firstName) => `Woof! This is where ${firstName} lives. Inside: who he is, in one page.`,
+    house: (firstName) => `Woof! This is where ${firstName} lives. Inside: who he is, on one page.`,
     arcade: (count) => `Welcome to the Arcade Hall. ${count} machines, ${count} apps. Walk up to one to watch its demo and play it live.`,
     harbor: "Ships from this pier sail to remote jobs across the sea.",
     fort: (count) => `${count} bosses from client projects. Pick one and watch the fight.`,
@@ -242,6 +244,7 @@ const en: OverworldCopy = {
 };
 
 const pt: OverworldCopy = {
+  stageRole: "jogo",
   stageLabel: "Porto Magalhães, uma cidade em pixels. Setas ou WASD para andar, Enter para falar. Use os botões dos lugares para viajar.",
   skipToQuickView: "Pular o jogo: abrir a visão rápida",
   noscript: "Esta cidade precisa de JavaScript. Tudo também está na página de visão rápida.",
@@ -269,12 +272,12 @@ const pt: OverworldCopy = {
   skip: "Pular",
   close: "Fechar",
   daysToBuild: (days) => (days === 1 ? "dia para construir" : "dias para construir"),
-  builtSolo: "Feito sozinho, do primeiro commit até o ar",
+  builtSolo: "Feito sozinho, do primeiro commit à produção",
   playLive: "Jogar ao vivo",
-  playLiveLabel: (name) => `Jogar o ${name} ao vivo`,
+  playLiveLabel: (name) => `Jogar ${name} ao vivo`,
   openTab: "Abrir em nova aba",
   sourceCode: "Código no GitHub",
-  sourceCodeLabel: (name) => `Código do ${name} no GitHub, abre em outra aba`,
+  sourceCodeLabel: (name) => `Código de ${name} no GitHub, abre em outra aba`,
   privateRepo: "Repositório privado",
   backToDemo: "Voltar para a demo",
   pauseDemo: "Pausar demo",
@@ -286,7 +289,7 @@ const pt: OverworldCopy = {
   nextMachine: "Próxima máquina",
   noDemo: "Este não tem vídeo. O app ao vivo está a um clique.",
   reducedNote: "Movimento reduzido: a demo começa pausada.",
-  demoLabel: (name) => `Demonstração do ${name}`,
+  demoLabel: (name) => `Demonstração de ${name}`,
   problem: "Problema",
   move: "Jogada",
   result: "Resultado",

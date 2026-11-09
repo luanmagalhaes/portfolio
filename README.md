@@ -28,7 +28,7 @@ Next.js 16 (App Router), React 19, TypeScript, Tailwind 4, Vitest, Playwright an
 ## Quality
 
 - Unit tests for content integrity, routing, assets and the game logic of each version.
-- End-to-end tests on desktop, tablet and phone for every route: HTTP status, console errors, horizontal overflow, clipped or broken text, internal links, alt text and WCAG 2.1 AA checks with axe.
+- End-to-end tests on desktop, tablet and phone for every route: HTTP status, console errors, horizontal overflow, clipped or broken text, button text that overflows its button from 320 to 414 px, internal links, alt text and WCAG 2.1 AA checks with axe.
 - Keyboard navigation with visible focus, `prefers-reduced-motion` support, sound off by default and a custom 404 page.
 
 ## Scripts

@@ -3,6 +3,7 @@ import { localeTags, type Locale } from "@/domain/locale";
 import { otherLocale, pagePath } from "@/lib/routes";
 import type { Portfolio } from "@/domain/view";
 import type { Dictionary } from "@/i18n/dictionary";
+import { SectionNav } from "@/components/quick/SectionNav";
 
 const anchors = ["about", "apps", "bosses", "experience", "ai", "skills", "contact"] as const;
 
@@ -29,7 +30,7 @@ export function TopBar({ dictionary, locale }: { dictionary: Dictionary; locale:
         <Link className="pixel-button shrink-0" href={pagePath("home", locale)}>
           {dictionary.backToVersions}
         </Link>
-        <nav aria-label={dictionary.sections} className="min-w-0 flex-1 overflow-x-auto">
+        <SectionNav label={dictionary.sections}>
           <ul className="flex gap-1 whitespace-nowrap">
             {anchors.map((anchor) => (
               <li key={anchor}>
@@ -39,7 +40,7 @@ export function TopBar({ dictionary, locale }: { dictionary: Dictionary; locale:
               </li>
             ))}
           </ul>
-        </nav>
+        </SectionNav>
         <Link className="pixel-button shrink-0" href={pagePath("quick", other)} hrefLang={localeTags[other]} aria-label={dictionary.otherLanguageLabel}>
           {dictionary.otherLanguage}
         </Link>

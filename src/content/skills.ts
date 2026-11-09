@@ -6,7 +6,7 @@ export const skills: SkillGroupContent[] = [
     name: { en: "Engineering", pt: "Engenharia" },
     items: {
       en: ["Clean Architecture and DDD", "Micro-frontends and microservices", "Code review and mentoring", "Concurrency and idempotency", "Vitest, Jest, Testing Library, supertest, Playwright and Cypress"],
-      pt: ["Clean Architecture e DDD", "Micro-frontends e microserviços", "Code review e mentoria", "Concorrência e idempotência", "Vitest, Jest, Testing Library, supertest, Playwright e Cypress"],
+      pt: ["Clean Architecture e DDD", "Micro-frontends e microsserviços", "Code review e mentoria", "Concorrência e idempotência", "Vitest, Jest, Testing Library, supertest, Playwright e Cypress"],
     },
   },
   {

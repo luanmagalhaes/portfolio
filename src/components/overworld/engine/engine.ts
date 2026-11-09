@@ -108,6 +108,30 @@ async function loadFrames(base: string, idle: boolean): Promise<FrameSet | null>
   return { down: set.down!, left: set.left!, right: set.right!, up: set.up!, idle: complete };
 }
 
+interface TagBox {
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+}
+
+const tagGap = 2;
+
+function tagsOverlap(a: TagBox, b: TagBox): boolean {
+  return Math.abs(a.x - b.x) < (a.width + b.width) / 2 + tagGap && Math.abs(a.y - a.height / 2 - (b.y - b.height / 2)) < (a.height + b.height) / 2 + tagGap;
+}
+
+function clearOfPlacedTags(box: TagBox, placed: readonly TagBox[], top: number): number {
+  let y = box.y;
+  for (let attempt = 0; attempt <= placed.length; attempt += 1) {
+    const hit = placed.find((other) => tagsOverlap({ ...box, y }, other));
+    if (!hit) return y;
+    const above = hit.y - hit.height - tagGap;
+    y = above - box.height >= top ? above : hit.y + box.height + tagGap;
+  }
+  return y;
+}
+
 export class OverworldEngine {
   private readonly options: EngineOptions;
   private readonly ctx: CanvasRenderingContext2D;
@@ -278,7 +302,9 @@ export class OverworldEngine {
     const top = this.options.topBar();
     const bottom = width < toolbarBreakpoint ? this.options.bottomBar() : null;
     this.insets.top = Math.ceil((top ? top.getBoundingClientRect().bottom : 0) / this.scale);
-    this.insets.bottom = bottom ? Math.ceil(bottom.getBoundingClientRect().height / this.scale) : 0;
+    const bottomHeight = bottom ? Math.ceil(bottom.getBoundingClientRect().height) : 0;
+    this.insets.bottom = Math.ceil(bottomHeight / this.scale);
+    this.options.host.style.setProperty("--ow-bottom-bar", bottomHeight + "px");
     this.updateTravelMode();
     this.refreshTags();
     this.updateCamera();
@@ -527,12 +553,16 @@ export class OverworldEngine {
   private positionTags(): void {
     const top = this.insets.top * this.scale + 4;
     const bottom = window.innerHeight - this.insets.bottom * this.scale - 4;
+    const placed: TagBox[] = [];
     for (const tag of this.tags) {
       let x = Math.round((tag.x - this.camera.x) * this.scale);
       let y = Math.round((tag.y - this.camera.y) * this.scale);
       x = Math.max(tag.width / 2 + 4, Math.min(window.innerWidth - tag.width / 2 - 4, x));
       if (y - tag.height < top && y > top - tag.height * 2) y = top + tag.height;
+      if (y > bottom && y - tag.height < bottom + tag.height) y = bottom;
+      y = clearOfPlacedTags({ x, y, width: tag.width, height: tag.height }, placed, top);
       const hidden = y - tag.height > bottom || y < top - tag.height;
+      if (!hidden) placed.push({ x, y, width: tag.width, height: tag.height });
       tag.element.style.visibility = hidden ? "hidden" : "";
       tag.element.style.transform = `translate(${Math.round(x)}px, ${y}px)`;
     }

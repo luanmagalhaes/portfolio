@@ -280,8 +280,8 @@ export function Overworld({ portfolio, locale, links }: OverworldProps) {
       <a className="ow-skip-link" href={links.quick}>
         {copy.skipToQuickView}
       </a>
-      <div className="game">
-        <div ref={hostRef} className="stage-host" tabIndex={0} role="application" aria-roledescription="game" aria-label={copy.stageLabel}>
+      <div className="game" inert={state.phase === "title"}>
+        <div ref={hostRef} className="stage-host" tabIndex={0} role="application" aria-roledescription={copy.stageRole} aria-label={copy.stageLabel}>
           <canvas ref={canvasRef} className="stage" aria-hidden="true" />
           <div ref={tagLayerRef} className="tag-layer">
             <PlaceTags scene={state.scene} entries={tags} onActivate={activateTag} onHover={hoverTag} onFocusTag={focusTag} />

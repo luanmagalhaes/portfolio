@@ -1,5 +1,3 @@
-import "@/components/sprites/sprites.css";
-
 export function PixelDuo() {
   return (
     <div className="pixel-duo" aria-hidden="true">

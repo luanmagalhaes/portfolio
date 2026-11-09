@@ -88,6 +88,115 @@ for (const route of routes) {
   });
 }
 
+const phoneWidths = [320, 360, 375, 390, 414];
+
+async function overflowingControls(page: Page) {
+  return page.evaluate(() => {
+    const visuallyHidden = (element: Element) => {
+      for (let node: Element | null = element; node; node = node.parentElement) {
+        const style = getComputedStyle(node);
+        const rect = node.getBoundingClientRect();
+
+        if (node.hasAttribute("inert") || style.clip.startsWith("rect(") || style.clipPath.includes("inset(50%") || (style.overflow !== "visible" && rect.width <= 1 && rect.height <= 1)) {
+          return true;
+        }
+      }
+
+      return false;
+    };
+    const visible = (element: Element) => element.checkVisibility({ opacityProperty: true, visibilityProperty: true }) && !visuallyHidden(element);
+    const problems: string[] = [];
+
+    for (const control of document.querySelectorAll<HTMLElement>("a, button, [role=button], [role=tab]")) {
+      const style = getComputedStyle(control);
+      const box = control.getBoundingClientRect();
+
+      if (style.display === "inline" || box.width < 2 || box.height < 2 || !visible(control)) {
+        continue;
+      }
+
+      const label = (control.innerText || control.getAttribute("aria-label") || "").replace(/\s+/g, " ").trim().slice(0, 40);
+
+      if (style.overflowX !== "visible" && control.scrollWidth > control.clientWidth + 2) {
+        problems.push(`${label}: conteúdo maior que o botão`);
+        continue;
+      }
+
+      const walker = document.createTreeWalker(control, NodeFilter.SHOW_TEXT);
+
+      for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+        const parent = node.parentElement;
+
+        if (!node.nodeValue?.trim() || !parent || !visible(parent)) {
+          continue;
+        }
+
+        const slack = Math.max(2, parseFloat(getComputedStyle(parent).fontSize) * 0.25);
+        const range = document.createRange();
+
+        range.selectNodeContents(node);
+
+        const outside = [...range.getClientRects()].some(
+          (rect) => rect.width > 0 && (rect.left < box.left - 1.5 || rect.right > box.right + 1.5 || rect.top < box.top - slack || rect.bottom > box.bottom + slack),
+        );
+
+        if (outside) {
+          problems.push(`${label}: texto vaza do botão`);
+          break;
+        }
+      }
+    }
+
+    return problems;
+  });
+}
+
+const arcadeScreens = [
+  ["#/menu", "menu"],
+  ["#/cartridges", "cartridges"],
+  ["#/cart/la-cuentita", "cart"],
+  ["#/character", "character"],
+  ["#/boss/session-thief", "boss"],
+  ["#/continue", "continue"],
+] as const;
+
+async function startOverworld(page: Page) {
+  await page.locator(".title-start").click();
+  await page.locator(".dialog-skip").click();
+  await expect(page.locator(".dialog-box")).toHaveCount(0);
+}
+
+test.describe("botões no celular", () => {
+  test.skip(({ isMobile }) => !isMobile, "roda só no projeto de celular");
+
+  for (const route of routes) {
+    test(`${route} não tem texto vazando de botão entre 320 e 414 px`, async ({ page }) => {
+      const problems: string[] = [];
+
+      for (const width of phoneWidths) {
+        await page.setViewportSize({ width, height: 740 });
+        await page.goto(route, { waitUntil: "networkidle" });
+        problems.push(...(await overflowingControls(page)).map((problem) => `${width}px: ${problem}`));
+
+        if (route.endsWith("/overworld")) {
+          await startOverworld(page);
+          problems.push(...(await overflowingControls(page)).map((problem) => `${width}px em jogo: ${problem}`));
+        }
+
+        if (route.endsWith("/arcade")) {
+          for (const [hash, screen] of arcadeScreens) {
+            await page.goto(`${route}${hash}`, { waitUntil: "networkidle" });
+            await expect(page.locator(`[data-screen="${screen}"]`)).toBeVisible();
+            problems.push(...(await overflowingControls(page)).map((problem) => `${width}px em ${hash}: ${problem}`));
+          }
+        }
+      }
+
+      expect(problems).toEqual([]);
+    });
+  }
+});
+
 for (const route of missingRoutes) {
   test(`endereço inexistente ${route} mostra o 404 do site`, async ({ page }) => {
     const response = await page.goto(route);

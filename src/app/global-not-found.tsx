@@ -18,10 +18,10 @@ const messages: GameOverMessage[] = [
     body: "The link may be old or have a typo. Pick a version of the portfolio and keep playing.",
     actions: (
       <>
-        <Link className="pixel-button pixel-button-primary" href={pagePath("home", "en")}>
+        <Link className="pixel-button pixel-button-primary" href={pagePath("home", "en")} prefetch={false}>
           Back to the versions
         </Link>
-        <Link className="pixel-button" href={pagePath("quick", "en")}>
+        <Link className="pixel-button" href={pagePath("quick", "en")} prefetch={false}>
           Quick view
         </Link>
       </>
@@ -33,10 +33,10 @@ const messages: GameOverMessage[] = [
     body: "O link pode estar antigo ou com algum erro de digitação. Escolha uma versão do portfólio e continue jogando.",
     actions: (
       <>
-        <Link className="pixel-button pixel-button-primary" href={pagePath("home", "pt")} hrefLang="pt-BR">
+        <Link className="pixel-button pixel-button-primary" href={pagePath("home", "pt")} hrefLang="pt-BR" prefetch={false}>
           Voltar para as versões
         </Link>
-        <Link className="pixel-button" href={pagePath("quick", "pt")} hrefLang="pt-BR">
+        <Link className="pixel-button" href={pagePath("quick", "pt")} hrefLang="pt-BR" prefetch={false}>
           Visão rápida
         </Link>
       </>

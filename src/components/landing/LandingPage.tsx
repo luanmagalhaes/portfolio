@@ -8,7 +8,6 @@ import { pagePath } from "@/lib/routes";
 import { LanguageSwitch } from "@/components/landing/LanguageSwitch";
 import { PixelDuo } from "@/components/sprites/PixelDuo";
 import { VersionCard } from "@/components/landing/VersionCard";
-import "@/components/landing/landing.css";
 
 export function LandingPage({ locale }: { locale: Locale }) {
   const { profile } = portfolioFor(staticPortfolioSource, locale);

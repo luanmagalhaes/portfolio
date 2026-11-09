@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { PixelDuo } from "@/components/sprites/PixelDuo";
-import "@/components/system/system.css";
 
 export interface GameOverMessage {
   lang: string;
